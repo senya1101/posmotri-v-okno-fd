@@ -9,13 +9,13 @@ html {
 }
 
 .page {
-  inline-size: 1200px;
-  block-size: 100%;
   margin: auto;
   color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-size: 18px;
   background-color: #1b1919;
+  inline-size: 1200px;
+  block-size: 100%;
 }
 
 h1,
@@ -37,6 +37,235 @@ ol {
   list-style: none;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.page {
+  display: flex;
+  align-items: center;  
+  padding: 133px 30px;
+}
+
+.content {
+  display: grid;
+  grid-template-areas: 'result content__details';
+  grid-template-columns: 711px 1fr;
+  width: 100%;
+  gap: 30px;  
+}
+
+.result {
+  grid-area: 'result';
+  align-self: end;
+}
+
+.result__video-container {
+  position: relative;
+  width: 711px;
+  height: 386px;
+  margin-bottom: 16px;
+}
+
+.result__video {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  place-items: start;
+  gap: 40px;
+}
+
+.search-form__fieldset {
+  border: none;
+}
+
+.search-form__fieldset-title {
+  margin-bottom: 5px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+}
+
+
+.search-form__label-text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+}
+
+.search-form__label {
+  padding: 1px;
+  
+  display: flex;
+  flex-direction: row;
+  border: 1px transparent solid;
+}
+
+.search-form__textfield {
+  color: #FFF;
+  width: 225px;
+  font-family: Fira Sans Condensed, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.6px;
+  border: 1px solid #fff;
+  border-right: none;
+  border-left: none;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.6px;
+  background-color: transparent;
+  appearance: none;
+}
+
+
+.search-form__label:has(:focus) {
+  border: 1px solid #fff;
+}
+
+
+.search-form__textfield:focus {
+  border: 1px solid #fff;
+  border-right: none;
+  border-left: none;
+  outline: none;
+}
+
+.search-form__label {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.search-form__checkbox-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.search-form__pseudo-checkbox {
+  width: 19px;
+  height: 19px;
+  border: 1px #fff solid;
+  cursor: pointer;
+}
+
+.button {
+  border: 1px white solid;
+  color: #ffff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search-form__submit-button {
+  padding: 6px 73.5px;
+  align-self: flex-end;
+}
+
+
+.content__details {
+  grid-area: 'content__details';
+  max-width: 100%;
+}
+
+.title {
+  font-family: Oswald, sans-serif;
+  font-weight: 700;
+  font-size: 75px;
+  line-height: 70.5px;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.content__accent {
+  color: #545050;
+}
+
+.content__list-container {
+  height: 298px;
+  overflow-y: scroll;
+}
+
+.content__list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.content__video-card {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  padding: 0 3px 0 2px;
+  gap: 5px;
+}
+
+.content__video-card-description-container {
+  flex-grow: 1;
+  max-width: 191px;
+  padding-top: px;
+}
+
+.content__card-link {
+  text-decoration: none;
+}
+
+.content__video-card-title {
+  margin-bottom: 3px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-family: Oswald, sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: left;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.content__video-card-description {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 16.2px;
+  text-align: left;
+  color: #fff;
+  text-overflow: clip;
+
+}
+
+.content__video-card-thumbnail {
+  width: 194px;
+  height: 103px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.more-button {
+  align-self: stretch;
+  width: 100%;
+  padding: 6px 0; 
+}
+
+
 /* Кастомный скроллбар */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
@@ -47,5 +276,5 @@ ol {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }

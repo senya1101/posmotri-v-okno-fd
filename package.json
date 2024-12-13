@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "prettier": "^3.4.2"
+  },
+  "scripts": {
+    "check": "prettier --check './**/*.{html,css,js}'",
+    "format": "prettier --write './**/*.{html,css,js}'"
+  }
+}

@@ -1,21 +1,21 @@
 /* КОНФИГ */
 const preloaderWaitindTime = 1200;
 const cardsOnPage = 5;
-const BASE_URL = 'https://v-content.practicum-team.ru';
+const BASE_URL = "https://v-content.practicum-team.ru";
 const endpoint = `${BASE_URL}/api/videos?pagination[pageSize]=${cardsOnPage}&`;
 
 /* ЭЛЕМЕНТЫ СТРАНИЦЫ */
-const cardsList = document.querySelector('.content__list');
-const cardsContainer = document.querySelector('.content__list-container');
-const videoContainer = document.querySelector('.result__video-container');
-const videoElement = document.querySelector('.result__video');
-const form = document.querySelector('form');
+const cardsList = document.querySelector(".content__list");
+const cardsContainer = document.querySelector(".content__list-container");
+const videoContainer = document.querySelector(".result__video-container");
+const videoElement = document.querySelector(".result__video");
+const form = document.querySelector("form");
 
 /* ТЕМПЛЕЙТЫ */
-const cardTmp = document.querySelector('.cards-list-item-template');
-const preloaderTmp = document.querySelector('.preloader-template');
-const videoNotFoundTmp = document.querySelector('.error-template');
-const moreButtonTmp = document.querySelector('.more-button-template');
+const cardTmp = document.querySelector(".cards-list-item-template");
+const preloaderTmp = document.querySelector(".preloader-template");
+const videoNotFoundTmp = document.querySelector(".error-template");
+const moreButtonTmp = document.querySelector(".more-button-template");
 
 /* МЕХАНИКА */
 
@@ -32,14 +32,14 @@ mainMechanics(endpoint);
 form.onsubmit = (e) => {
   e.preventDefault();
 
-  cardsList.textContent = '';
-  const buttonInDOM = cardsContainer.querySelector('.more-button');
+  cardsList.textContent = "";
+  const buttonInDOM = cardsContainer.querySelector(".more-button");
   if (buttonInDOM) {
     buttonInDOM.remove();
   }
 
   [...videoContainer.children].forEach((el) => {
-    el.className === 'error' && el.remove();
+    el.className === "error" && el.remove();
   });
 
   showPreloader(preloaderTmp, videoContainer);
@@ -49,7 +49,7 @@ form.onsubmit = (e) => {
   const requestUrl = generateFilterRequest(
     endpoint,
     formData.city,
-    formData.timeArray
+    formData.timeArray,
   );
 
   mainMechanics(requestUrl);
@@ -63,7 +63,7 @@ async function mainMechanics(endpoint) {
     cardsOnPageState = data.results;
 
     if (!data?.results?.[0]) {
-      throw new Error('not-found');
+      throw new Error("not-found");
     }
 
     appendCards({
@@ -80,21 +80,21 @@ async function mainMechanics(endpoint) {
       posterUrl: data.results[0].poster.url,
     });
     document
-      .querySelectorAll('.content__card-link')[0]
-      .classList.add('content__card-link_current');
+      .querySelectorAll(".content__card-link")[0]
+      .classList.add("content__card-link_current");
     await waitForReadyVideo(videoElement);
     await delay(preloaderWaitindTime);
-    removePreloader(videoContainer, '.preloader');
-    removePreloader(cardsContainer, '.preloader');
+    removePreloader(videoContainer, ".preloader");
+    removePreloader(cardsContainer, ".preloader");
 
     // Добавляем класс для стилизации скроллбара
-    cardsContainer.classList.add('custom-scrollbar');
+    cardsContainer.classList.add("custom-scrollbar");
 
     chooseCurrentVideo({
       baseUrl: BASE_URL,
       videoData: cardsOnPageState,
-      cardLinksSelector: '.content__card-link',
-      currentLinkClassName: 'content__card-link_current',
+      cardLinksSelector: ".content__card-link",
+      currentLinkClassName: "content__card-link_current",
       mainVideo: videoElement,
     });
 
@@ -102,20 +102,20 @@ async function mainMechanics(endpoint) {
       dataArray: data,
       buttonTemplate: moreButtonTmp,
       cardsList,
-      buttonSelector: '.more-button',
+      buttonSelector: ".more-button",
       initialEndpoint: endpoint,
       baseUrl: BASE_URL,
       cardTmp: cardTmp,
     });
   } catch (err) {
-    if (err.message === 'not-found') {
-      showError(videoContainer, videoNotFoundTmp, 'Нет подходящих видео =(');
+    if (err.message === "not-found") {
+      showError(videoContainer, videoNotFoundTmp, "Нет подходящих видео =(");
     } else {
-      showError(videoContainer, videoNotFoundTmp, 'Ошибка получения данных :(');
+      showError(videoContainer, videoNotFoundTmp, "Ошибка получения данных :(");
     }
     console.log(err);
-    removePreloader(videoContainer, '.preloader');
-    removePreloader(cardsContainer, '.preloader');
+    removePreloader(videoContainer, ".preloader");
+    removePreloader(cardsContainer, ".preloader");
   }
 }
 
@@ -141,7 +141,7 @@ async function waitForReadyVideo(video) {
 function showPreloader(tmp, parent) {
   const node = tmp.content.cloneNode(true);
   parent.append(node);
-  console.log('показал прелоадер');
+  console.log("показал прелоадер");
 }
 
 // Убирает прелоадер из DOM ✅
@@ -151,33 +151,33 @@ function removePreloader(parent, preloaderSelector) {
     preloader.remove();
   }
 
-  console.log('убрал прелоадер');
+  console.log("убрал прелоадер");
 }
 
 // Добавляет карточки в контейнер, собирая их из данных API ✅
 function appendCards({ baseUrl, dataArray, cardTmp, container }) {
   dataArray.forEach((el) => {
     const node = cardTmp.content.cloneNode(true);
-    node.querySelector('a').setAttribute('id', el.id);
-    node.querySelector('.content__video-card-title').textContent = el.city;
-    node.querySelector('.content__video-card-description').textContent =
+    node.querySelector("a").setAttribute("id", el.id);
+    node.querySelector(".content__video-card-title").textContent = el.city;
+    node.querySelector(".content__video-card-description").textContent =
       el.description;
     node
-      .querySelector('.content__video-card-thumbnail')
-      .setAttribute('src', `${baseUrl}${el.thumbnail.url}`);
+      .querySelector(".content__video-card-thumbnail")
+      .setAttribute("src", `${baseUrl}${el.thumbnail.url}`);
     node
-      .querySelector('.content__video-card-thumbnail')
-      .setAttribute('alt', el.description);
+      .querySelector(".content__video-card-thumbnail")
+      .setAttribute("alt", el.description);
     container.append(node);
   });
-  console.log('Сгенерировал карточки');
+  console.log("Сгенерировал карточки");
 }
 
 // Устанавливет внужное видео в контейнер ✅
 function setVideo({ baseUrl, video, videoUrl, posterUrl }) {
-  video.setAttribute('src', `${baseUrl}${videoUrl}`);
-  video.setAttribute('poster', `${baseUrl}${posterUrl}`);
-  console.log('Подставил видео в основной блок');
+  video.setAttribute("src", `${baseUrl}${videoUrl}`);
+  video.setAttribute("poster", `${baseUrl}${posterUrl}`);
+  console.log("Подставил видео в основной блок");
 }
 
 // получает данные из формы и сериализует как надо ✅
@@ -189,7 +189,7 @@ function serializeFormData(form) {
     item.checked && acc.push(item.value);
     return acc;
   }, []);
-  console.log('Собрал данные формы в объект');
+  console.log("Собрал данные формы в объект");
   return {
     city: city.value,
     timeArray: checkedValuesArray,
@@ -206,7 +206,7 @@ function generateFilterRequest(endpoint, city, timeArray) {
       endpoint += `filters[time_of_day][$eqi]=${timeslot}&`;
     });
   }
-  console.log('Сгенерировал строку адреса запроса в API из данных формы');
+  console.log("Сгенерировал строку адреса запроса в API из данных формы");
   return endpoint;
 }
 
@@ -229,7 +229,7 @@ function chooseCurrentVideo({
         item.classList.add(currentLinkClassName);
         showPreloader(preloaderTmp, videoContainer);
         const vidoObj = videoData.find(
-          (video) => String(video.id) === String(item.id)
+          (video) => String(video.id) === String(item.id),
         );
         setVideo({
           baseUrl,
@@ -239,8 +239,8 @@ function chooseCurrentVideo({
         });
         await waitForReadyVideo(mainVideo);
         await delay(preloaderWaitindTime);
-        removePreloader(videoContainer, '.preloader');
-        console.log('Переключил видео');
+        removePreloader(videoContainer, ".preloader");
+        console.log("Переключил видео");
       };
     });
   }
@@ -249,9 +249,9 @@ function chooseCurrentVideo({
 // вывожу интерфейс, когда видео не найдено ✅
 function showError(container, errorTemplate, errorMessage) {
   const node = errorTemplate.content.cloneNode(true);
-  node.querySelector('.error__title').textContent = errorMessage;
+  node.querySelector(".error__title").textContent = errorMessage;
   container.append(node);
-  console.log('показал, ошибку');
+  console.log("показал, ошибку");
 }
 
 // вывожу больше видео, если в пагинации больше страниц, чем показано
@@ -271,7 +271,7 @@ function showMoreCards({
   cardsContainer.append(button);
   // Выберем добавленный элемент по селектору и добавим слушатель клика
   const buttonInDOM = cardsContainer.querySelector(buttonSelector);
-  buttonInDOM.addEventListener('click', async () => {
+  buttonInDOM.addEventListener("click", async () => {
     // по клику запросим данные для следующей страницы
     let currentPage = dataArray.pagination.page;
     let urlToFetch = `${initialEndpoint}pagination[page]=${(currentPage += 1)}&`;
@@ -288,8 +288,8 @@ function showMoreCards({
       chooseCurrentVideo({
         baseUrl: BASE_URL,
         videoData: cardsOnPageState,
-        cardLinksSelector: '.content__card-link',
-        currentLinkClassName: 'content__card-link_current',
+        cardLinksSelector: ".content__card-link",
+        currentLinkClassName: "content__card-link_current",
         mainVideo: videoElement,
       });
       showMoreCards({
