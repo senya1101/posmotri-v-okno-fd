@@ -16,6 +16,9 @@ html {
   background-color: #1b1919;
   inline-size: 1200px;
   block-size: 100%;
+  display: flex;
+  align-items: center;
+  padding: 133px 30px;
 }
 
 h1,
@@ -45,12 +48,6 @@ ol {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-.page {
-  display: flex;
-  align-items: center;
-  padding: 133px 30px;
 }
 
 .content {
@@ -101,9 +98,8 @@ ol {
 
 .search-form__label {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  flex-direction: row;
+  gap: 5px;
 }
 
 .search-form__textfield {
@@ -146,12 +142,6 @@ ol {
   gap: 15px;
 }
 
-.search-form__label {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-}
-
 .search-form__pseudo-checkbox {
   width: 19px;
   height: 19px;
@@ -175,14 +165,10 @@ ol {
   font-weight: 700;
   font-size: 18px;
   text-align: center;
+  line-height: 21.6px;
   background-color: transparent;
   cursor: pointer;
   padding: 6px 0;
-}
-
-.button:active {
-  background-color: #545050;
-  text-decoration: none;
 }
 
 .button:focus-visible {
@@ -192,6 +178,11 @@ ol {
 
 .button:hover {
   text-decoration: underline;
+}
+
+.button:active {
+  background-color: #545050;
+  text-decoration: none;
 }
 
 .search-form__submit-button {
@@ -210,7 +201,7 @@ ol {
   font-size: 75px;
   line-height: 70.5px;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .content__accent {
@@ -224,7 +215,10 @@ ol {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 0 2px 2px;
+}
+
+.content__list-item {
+  padding: 0 2px 0;
 }
 
 .content__list {
@@ -236,13 +230,15 @@ ol {
 .content__video-card {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: start;
   gap: 5px;
 }
 
 .content__video-card-description-container {
   flex-grow: 1;
-  max-width: 50%;
+  max-width: 180px;
+  padding-top: 4px;
 }
 
 .content__card-link {
@@ -252,7 +248,7 @@ ol {
 }
 
 .content__video-card-title {
-  padding-bottom: 6px;
+  padding-bottom: 3px;
   text-overflow: ellipsis;
   overflow: hidden;
   font-family: Oswald, sans-serif;
