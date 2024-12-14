@@ -123,10 +123,6 @@ ol {
   border: 1px solid #fff;
   border-right: none;
   border-left: none;
-  font-family: inherit;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 21.6px;
   background-color: transparent;
   appearance: none;
 }
@@ -201,11 +197,13 @@ ol {
 }
 
 .content__list-container {
+  position: relative;
   height: 298px;
   overflow-y: scroll;
 }
 
 .content__list {
+  
   display: flex;
   flex-direction: column;
   gap: 30px;
