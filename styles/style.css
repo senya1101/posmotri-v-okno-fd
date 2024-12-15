@@ -115,7 +115,7 @@ ol {
   border: 1px solid #fff;
   border-right: none;
   border-left: none;
-  padding: 2.5px 0;
+  padding: 2px 0;
   color: #fff;
   font-family: "Fira Sans Condensed", sans-serif;
   font-weight: 400;
@@ -132,6 +132,11 @@ ol {
 .search-form__textfield:active {
   border-color: transparent;
   outline: 1px solid #fff;
+}
+
+.search-form__textfield:focus {
+  border-color: transparent;
+  outline: none;
 }
 
 .search-form__label:has(:focus-visible) {
@@ -306,7 +311,8 @@ ol {
 }
 
 .more-button {
-  width: 100%;
+  flex-grow: 1;
+  margin: 2px;
 }
 
 /* Кастомный скроллбар */
