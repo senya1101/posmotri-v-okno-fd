@@ -144,9 +144,7 @@ ol {
   outline-offset: 1px;
 }
 
-.search-form__textfield:focus {
-  outline: none;
-}
+
 
 .search-form__checkbox-list {
   display: flex;
@@ -207,7 +205,6 @@ ol {
 
 .content__details {
   grid-area: "content__details";
-  max-width: 100%;
 }
 
 .title {
@@ -252,7 +249,7 @@ ol {
 
 .content__video-card-description-container {
   flex-grow: 1;
-  max-width: 180px;
+  max-width: 191px;
   padding-top: 4px;
 }
 
