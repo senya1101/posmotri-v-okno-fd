@@ -67,7 +67,7 @@ ol {
   position: relative;
   width: 711px;
   height: 386px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .result__video {
@@ -82,7 +82,7 @@ ol {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   gap: 40px;
 }
 
